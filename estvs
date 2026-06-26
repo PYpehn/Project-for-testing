@@ -1,13 +1,13 @@
 local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
 
 local Window = Rayfield:CreateWindow({
-   Name = "🔥 Example Script Hub | Game 🔫",
-   LoadingTitle = "🔫 Gun Simulator 💥",
-   LoadingSubtitle = "by 1_F0",
+   Name = "used by the Proxy Servers.",
+   LoadingTitle = "minigames",
+   LoadingSubtitle = "by Komi Servers",
    ConfigurationSaving = {
       Enabled = false,
       FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Example Hub"
+      FileName = "Komi Servers"
    },
    Discord = {
       Enabled = false,
@@ -121,35 +121,34 @@ local Input = MainTab:CreateInput({
 local OtherSection = MainTab:CreateSection("Other")
 
 local Toggle = MainTab:CreateToggle({
-   Name = "Auto Farm",
-   CurrentValue = false,
-   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
+   Name = "Pointway",
+   CurrentValue = false, -- Sets the starting state (on/off)
+   Flag = "PointwayToggle", -- A unique identifier for saving/loading
    Callback = function(Value)
-        print("FARMING")
+      -- This code runs whenever you click the toggle
+      if Value then
+         print("Pointway is now ON")
+         -- Put your ENABLE code here
+      else
+         print("Pointway is now OFF")
+         -- Put your DISABLE code here
    end,
 })
 
-local TPTab = Window:CreateTab("🏝 Teleports", nil) -- Title, Image
+local Toggle = MainTab:CreateToggle({
+    Name = "Chat Spammer",
+    CurrentValue = false,
+    Flag = "ChatSpamToggle",
+    Callback = function(Value)
+        getgenv().Spamming = Value
+        
+        if Value then
+            task.spawn(function()
+                while getgenv().Spamming do
+                    -- This sends the message defined in your Input
+                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(getgenv().SpamText or "Spamming", "All")
+                    task.wait(getgenv().SpamDelay or 1)
+               end,
+            })
 
-local Button1 = TPTab:CreateButton({
-   Name = "Starter Island",
-   Callback = function()
-        --Teleport1
-   end,
-})
-
-local Button2 = TPTab:CreateButton({
-   Name = "Pirate Island",
-   Callback = function()
-        --Teleport2
-   end,
-})
-
-local Button3 = TPTab:CreateButton({
-   Name = "Pineapple Paradise",
-   Callback = function()
-        --Teleport3
-   end,
-})
-
-local TPTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
+local Tab = Window:CreateTab("📍Pointway", nil) -- Title, Image

@@ -1,20 +1,18 @@
-local Rayfield = loadstring(game:HttpGet('https://sirius.menu/rayfield'))()
-
 local Window = Rayfield:CreateWindow({
-   Name = "used by the Proxy Servers.",
-   LoadingTitle = "minigames",
-   LoadingSubtitle = "by Komi Servers",
+   Name = "🔥 Example Script Hub | Game 🔫",
+   LoadingTitle = "🔫 Gun Simulator 💥",
+   LoadingSubtitle = "by 1_F0",
    ConfigurationSaving = {
       Enabled = false,
       FolderName = nil, -- Create a custom folder for your hub/game
-      FileName = "Komi Servers"
+      FileName = "Example Hub"
    },
    Discord = {
       Enabled = false,
       Invite = "noinvitelink", -- The Discord invite code, do not include discord.gg/. E.g. discord.gg/ABCD would be ABCD
       RememberJoins = true -- Set this to false to make them join the discord every time they load it up
    },
-   KeySystem = false, -- Set this to true to use our key system
+   KeySystem = true, -- Set this to true to use our key system
    KeySettings = {
       Title = "Key | Youtube Hub",
       Subtitle = "Key System",
@@ -22,7 +20,7 @@ local Window = Rayfield:CreateWindow({
       FileName = "YoutubeHubKey1", -- It is recommended to use something unique as other scripts using Rayfield may overwrite your key file
       SaveKey = false, -- The user's key will be saved, but if you change the key, they will be unable to use your script
       GrabKeyFromSite = true, -- If this is true, set Key below to the RAW site you would like Rayfield to get the key from
-      Key = {"nil"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
+      Key = {"https://pastebin.com/raw/AtgzSPWK"} -- List of keys that will be accepted by the system, can be RAW file links (pastebin, github etc) or simple strings ("hello","key22")
    }
 })
 
@@ -121,34 +119,35 @@ local Input = MainTab:CreateInput({
 local OtherSection = MainTab:CreateSection("Other")
 
 local Toggle = MainTab:CreateToggle({
-   Name = "Pointway",
-   CurrentValue = false, -- Sets the starting state (on/off)
-   Flag = "PointwayToggle", -- A unique identifier for saving/loading
+   Name = "Auto Farm",
+   CurrentValue = false,
+   Flag = "Toggle1", -- A flag is the identifier for the configuration file, make sure every element has a different flag if you're using configuration saving to ensure no overlaps
    Callback = function(Value)
-      -- This code runs whenever you click the toggle
-      if Value then
-         print("Pointway is now ON")
-         -- Put your ENABLE code here
-      else
-         print("Pointway is now OFF")
-         -- Put your DISABLE code here
+        print("FARMING")
    end,
 })
 
-local Toggle = MainTab:CreateToggle({
-    Name = "Chat Spammer",
-    CurrentValue = false,
-    Flag = "ChatSpamToggle",
-    Callback = function(Value)
-        getgenv().Spamming = Value
-        
-        if Value then
-            task.spawn(function()
-                while getgenv().Spamming do
-                    -- This sends the message defined in your Input
-                    game:GetService("ReplicatedStorage").DefaultChatSystemChatEvents.SayMessageRequest:FireServer(getgenv().SpamText or "Spamming", "All")
-                    task.wait(getgenv().SpamDelay or 1)
-               end,
-            })
+local TPTab = Window:CreateTab("🏝 Teleports", nil) -- Title, Image
 
-local Tab = Window:CreateTab("📍Pointway", nil) -- Title, Image
+local Button1 = TPTab:CreateButton({
+   Name = "Starter Island",
+   Callback = function()
+        --Teleport1
+   end,
+})
+
+local Button2 = TPTab:CreateButton({
+   Name = "Pirate Island",
+   Callback = function()
+        --Teleport2
+   end,
+})
+
+local Button3 = TPTab:CreateButton({
+   Name = "Pineapple Paradise",
+   Callback = function()
+        --Teleport3
+   end,
+})
+
+local TPTab = Window:CreateTab("🎲 Misc", nil) -- Title, Image
